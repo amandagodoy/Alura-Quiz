@@ -26,6 +26,8 @@ function QuestionWidget({
   questionIndex,
   totalQuestions,
  }) {
+  console.log(question);
+
   return (
     <Widget>
       <Widget.Header>
@@ -52,7 +54,7 @@ function QuestionWidget({
         </p>
 
         <form>
-          {question.alternatives.forEach((alternative, alternativeIndex) => {
+          {question.alternatives.map((alternative, alternativeIndex) => {
             const alternativeId = `alternative__${alternativeIndex}`;
             return (
               <Widget.Topic
@@ -61,7 +63,7 @@ function QuestionWidget({
               >
                 <input 
                   id={alternativeId}
-                  typer="radio"
+                  type="radio"
                 />
                 {alternative}
               </Widget.Topic>
