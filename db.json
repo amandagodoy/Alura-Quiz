@@ -4,7 +4,7 @@
     "description": "Descubra as sobremesas molhadinhas e recheaduda!",
     "questions":  [
       {
-        "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
+        "image": "https://media4.giphy.com/media/FDVJ77UhToSBy/200.webp?cid=ecf05e47mdju9w962kkdr5h2d4ui23xmib18hwzq2i0s2r8t&rid=200.webp",
         "title": "Qual sabor você tem preferência?",
         "description": "Essa é pra aquecer",
         "answer": 2,
@@ -19,13 +19,23 @@
         ]
       },
       {
-        "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-        "title": "Como fazer um background gradiente com css?",
-        "description": "Faz tempo em haha",
+        "image": "https://media0.giphy.com/media/zSiEygkcONzyw/200w.webp?cid=ecf05e47yzzbaue3f7qa9z1obdq6rnlbjjovmmacck4p4c2v&rid=200w.webp",
+        "title": "Algum complento referente a incomenda?",
+        "description": "Intolerância a Lactose/ Gluten/ Diabetico",
         "answer": 0,
         "alternatives": [
-           "background: linear-gradient(#e66465, #9198e5);",
-           "background: gradient(#e66465, #9198e5);"
+           "rede social(Facebook, Instagram, WhatSapp)",
+           "E-mail;"
+        ]
+      },
+      {
+        "image": "https://media0.giphy.com/media/zSiEygkcONzyw/200w.webp?cid=ecf05e47yzzbaue3f7qa9z1obdq6rnlbjjovmmacck4p4c2v&rid=200w.webp",
+        "title": "Meio de contato?",
+        "description": "Para melhor retorno",
+        "answer": 0,
+        "alternatives": [
+           "rede social(Facebook, Instagram, WhatSapp)",
+           "E-mail;"
         ]
       }
     ],

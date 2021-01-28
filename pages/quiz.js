@@ -21,13 +21,13 @@ function LoadingWidgt() {
   );
 }
 
-function QuestionWidget({ 
-  question, 
+function QuestionWidget({
+  question,
   questionIndex,
   totalQuestions,
- }) {
-  console.log(question);
-
+  onSubmit,
+}) {
+  const questionId = `question__${questionIndex}`;
   return (
     <Widget>
       <Widget.Header>
@@ -53,16 +53,21 @@ function QuestionWidget({
           {question.descrition}
         </p>
 
-        <form>
+        <form onSubmit={(infosDoEvento) => {
+          infosDoEvento.preventDefault();
+          onSubmit();
+        }}>
           {question.alternatives.map((alternative, alternativeIndex) => {
             const alternativeId = `alternative__${alternativeIndex}`;
             return (
               <Widget.Topic
-                as="label" 
+                as="label"
                 htmlFor={alternativeId}
               >
-                <input 
+                <input
+                  //style={{ display: 'none' }}
                   id={alternativeId}
+                  name={questionId}
                   type="radio"
                 />
                 {alternative}
@@ -70,11 +75,11 @@ function QuestionWidget({
             );
           })}
 
-          {/*<pre>
+          {/* <pre>
             {JSON.stringify(question, null, 4)}
-          </pre>*/}
+          </pre> */}
 
-          <Button>
+          <Button type="submit">
             Confirmar
           </Button>
         </form>
@@ -83,21 +88,55 @@ function QuestionWidget({
   );
 }
 
+const screenStates = {
+  QUIZ: 'QUIZ',
+  LOADING: 'LOADING',
+  RESULT: 'RESULT',
+};
+
 export default function QuizPage() {
+  const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const totalQuestions = db.questions.length;
-  const questionIndex = 0;
+  const [currentQuestion, setCurrentQuestion] = React.useState(0);
+  const questionIndex = currentQuestion;
   const question = db.questions[questionIndex];
+
+  // [React chama de: Efeitos || Effects]
+  // React.useEffect
+  // Atualiza === WillUpdate
+  // Morre === WillUnmount
+  React.useEffect(() => {
+    // Fetch() ...
+    setTimeout(() => {
+      setScreenState(screenStates.QUIZ);
+    }, 1 * 1000);
+    // Nasce === didMount
+  }, []);
+
+  function handleSubmitPedido() {
+    const nextQuestion = questionIndex + 1;
+    if (nextQuestion < totalQuestions) {
+      setCurrentQuestion(nextQuestion);
+    } else {
+      setScreenState(screenStates.RESULT);
+    }
+  }
 
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
+        {screenState === 'QUIZ' && (
+          <QuestionWidget
+            question={question}
+            questionIndex={questionIndex}
+            totalQuestions={totalQuestions}
+            onSubmit={handleSubmitPedido}
+          />
+        )}
+        {screenState === screenStates.LOADING && <LoadingWidgt />}
 
-        <QuestionWidget 
-          question={question} 
-          totalQuestions={totalQuestions}
-        />
-        <LoadingWidgt />
+        {screenState === screenStates.RESULT && <div>Encomenda efetuada com sucesso \^^/</div>}
       </QuizContainer>
     </QuizBackground>
   );
