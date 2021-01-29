@@ -40,7 +40,8 @@
       }
     ],
     "external": [
-      ""
+      "https://aluraquiz-arcade.wesdrasalves.vercel.app/",
+      "https://quiz-star-wars.mattheussal.vercel.app/"
     ],
     "theme": {
       "colors": {
